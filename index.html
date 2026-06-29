@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>cathack.meow</title>
+
+<style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+        background: radial-gradient(circle at top, #1a0f1f, #0d0d0f);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 60px 20px;
+        color: white;
+    }
+
+    .glow {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(255,120,198,0.15), transparent 60%);
+        filter: blur(50px);
+        z-index: -1;
+    }
+
+    .title {
+        font-size: 34px;
+        font-weight: bold;
+        background: linear-gradient(90deg, #ffb6dc, #ff78c6, #b56bff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 25px rgba(255, 120, 198, 0.3);
+    }
+
+    .subtitle {
+        color: #bbb;
+        font-size: 14px;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    canvas {
+        width: 256px;
+        height: 256px;
+        border-radius: 28px;
+        box-shadow:
+            0 0 30px rgba(255, 120, 198, 0.35),
+            0 0 80px rgba(181, 107, 255, 0.15);
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 14px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.2s;
+        margin-bottom: 40px;
+        background: transparent;
+        border: 1px solid #ff6fb8;
+        color: #ff6fb8;
+    }
+
+    button:hover {
+        background: rgba(255, 111, 184, 0.1);
+        transform: scale(1.05);
+    }
+
+    /* ===== PREVIEW ===== */
+
+    .section-title {
+        font-size: 22px;
+        margin: 20px 0 10px;
+        color: #ffb6dc;
+        text-shadow: 0 0 15px rgba(255,120,198,0.3);
+    }
+
+    .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 360px);
+        gap: 18px;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .preview-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255, 111, 184, 0.25);
+        border-radius: 14px;
+        padding: 10px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 25px rgba(255, 120, 198, 0.08);
+        transition: 0.2s;
+    }
+
+    .preview-card:hover {
+        transform: scale(1.03);
+        border-color: rgba(255, 111, 184, 0.5);
+    }
+
+    .preview-img {
+        width: 100%;
+        height: 200px;
+        border-radius: 10px;
+        object-fit: cover;
+        background: #111;
+    }
+
+    iframe.preview-img {
+        border: none;
+    }
+
+    .caption {
+        margin-top: 8px;
+        font-size: 13px;
+        color: #ccc;
+        text-align: center;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="title">cathack.meow</div>
+<div class="subtitle">the cutest utility client ever made</div>
+
+<canvas id="logo" width="256" height="256"></canvas>
+
+<button onclick="alert('coming soon :3')">Enter Client</button>
+
+<div class="section-title">preview</div>
+
+<div class="preview-grid">
+
+    <!-- GUI -->
+    <div class="preview-card">
+        <img class="preview-img"
+             src="https://github.com/user-attachments/assets/ffc1b3c4-2fb0-4319-b66f-1201c9776df8">
+        <div class="caption">click GUI / module interface</div>
+    </div>
+
+    <!-- Sword PvP -->
+    <div class="preview-card">
+        <video class="preview-img" controls>
+            <source src="https://github.com/user-attachments/assets/2f30592d-b570-46b5-8449-eb59b3560613">
+        </video>
+        <div class="caption">sword PvP showcase</div>
+    </div>
+
+    <!-- Sword PvP 2 -->
+    <div class="preview-card">
+        <iframe class="preview-img"
+                src="https://streamable.com/e/5k8mt8"
+                allowfullscreen>
+        </iframe>
+        <div class="caption">sword PvP showcase #2</div>
+    </div>
+
+    <!-- Crystal PvP -->
+    <div class="preview-card">
+        <video class="preview-img" controls>
+            <source src="https://github.com/user-attachments/assets/a3192d9c-08f6-46bc-a8c4-318a22b1ea99">
+        </video>
+        <div class="caption">crystal PvP showcase</div>
+    </div>
+
+</div>
+
+<script>
+const c = document.getElementById("logo");
+const ctx = c.getContext("2d");
+
+const bg = ctx.createLinearGradient(0, 0, 256, 256);
+bg.addColorStop(0, "#ffb6dc");
+bg.addColorStop(0.5, "#ff78c6");
+bg.addColorStop(1, "#b56bff");
+
+ctx.fillStyle = bg;
+ctx.fillRect(0, 0, 256, 256);
+
+const glow = ctx.createRadialGradient(128, 128, 10, 128, 128, 170);
+glow.addColorStop(0, "rgba(255,255,255,0.35)");
+glow.addColorStop(1, "rgba(255,255,255,0)");
+
+ctx.fillStyle = glow;
+ctx.fillRect(0, 0, 256, 256);
+
+ctx.fillStyle = "white";
+ctx.font = "bold 96px Arial";
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
+ctx.shadowColor = "#ff5fb8";
+ctx.shadowBlur = 25;
+ctx.fillText(":3", 128, 120);
+
+ctx.font = "bold 18px Arial";
+ctx.shadowBlur = 10;
+ctx.fillText("cathack.meow", 128, 190);
+
+ctx.shadowBlur = 0;
+</script>
+
+</body>
+</html>
